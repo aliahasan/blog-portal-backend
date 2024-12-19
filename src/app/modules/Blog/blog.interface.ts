@@ -1,4 +1,5 @@
-import { Types } from 'mongoose';
+/* eslint-disable no-unused-vars */
+import { Model, Types } from 'mongoose';
 
 export type TBlog = {
   title: string;
@@ -6,3 +7,7 @@ export type TBlog = {
   author: Types.ObjectId;
   isPublished: boolean;
 };
+
+export interface BlogModel extends Model<TBlog> {
+  isBlogAuthor(id: string): Promise<boolean>;
+}

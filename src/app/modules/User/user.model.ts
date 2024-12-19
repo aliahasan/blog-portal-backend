@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import mongoose, { Schema } from 'mongoose';
 import config from '../../config';
-import { TUser } from './user.interface';
+import { TUser, UserModel } from './user.interface';
 
-const userSchema = new Schema<TUser>(
+const userSchema = new Schema<TUser, UserModel>(
   {
     name: {
       type: String,
@@ -20,7 +20,7 @@ const userSchema = new Schema<TUser>(
       type: String,
       required: true,
       minlength: 6,
-      select: 0,
+      // select: 0,
     },
     role: {
       type: String,
@@ -53,5 +53,19 @@ userSchema.post('save', function (doc, next) {
   next();
 });
 
-const User = mongoose.model<TUser>('User', userSchema);
+userSchema.statics.isPasswordMatched = async function (
+  userPassword: string,
+  hashedPassword: string
+) {
+  return await bcrypt.compare(userPassword, hashedPassword);
+};
+
+userSchema.statics.isBlocked = async function (id: string) {
+  const user = await this.findById(id);
+  if (user?.isBlocked) {
+    return true;
+  }
+};
+
+const User = mongoose.model<TUser, UserModel>('User', userSchema);
 export default User;

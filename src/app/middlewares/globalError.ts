@@ -3,6 +3,8 @@
 import { ErrorRequestHandler, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import config from '../config';
+import AppError from '../errors/AppError';
+import handleCastError from '../errors/castError';
 import handleDuplicateError from '../errors/duplicateError';
 import handleMongooseError from '../errors/mongooseError';
 import handleZodError from '../errors/zodError';
@@ -39,6 +41,18 @@ const handleGlobalError: ErrorRequestHandler = (
     statusCode = duplicateError.statusCode;
     message = duplicateError.message;
     error = duplicateError.error;
+  } else if (err?.name === 'CastError') {
+    const castErrorResponse = handleCastError(err);
+    statusCode = castErrorResponse?.statusCode;
+    message = castErrorResponse?.message;
+    error = castErrorResponse?.error;
+  } else if (err instanceof AppError) {
+    statusCode = err.statusCode;
+    message = err.message;
+    error = [{ field: '', message: err?.message }];
+  } else if (err instanceof Error) {
+    message = err?.message;
+    error = [{ field: '', message: err?.message || message }];
   }
 
   res.status(statusCode).json({
