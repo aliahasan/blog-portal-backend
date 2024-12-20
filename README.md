@@ -12,7 +12,6 @@ This project is a backend system for a blogging platform, supporting two distinc
 
 #### Admin:
 
-- Created manually in the database with predefined credentials.
 - Can delete any blog.
 - Can block users by setting their `isBlocked` property.
 - Cannot update any blog.
