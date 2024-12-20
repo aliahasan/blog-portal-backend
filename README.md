@@ -1,4 +1,4 @@
-# Blogging Platform Backend
+# Blog Portal Backend
 
 ## Overview
 
