@@ -200,7 +200,7 @@ This project is a backend system for a blogging platform, supporting two distinc
      PORT=5000
      DATABASE_URL=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
-     JWT_SECRET_EXPIRES_IN
+     JWT_SECRET_EXPIRES_IN=your_jwt_secret_expires
      ```
 4. Start the server:
    ```bash
