@@ -188,8 +188,7 @@ This project is a backend system for a blogging platform, supporting two distinc
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/blogging-platform.git
-   cd blogging-platform
+   git clone https://github.com/aliahasan/blog-portal-backend
    ```
 2. Install dependencies:
    ```bash
@@ -201,6 +200,7 @@ This project is a backend system for a blogging platform, supporting two distinc
      PORT=5000
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
+     JWT_SECRET_EXPIRES_IN
      ```
 4. Start the server:
    ```bash
@@ -208,36 +208,3 @@ This project is a backend system for a blogging platform, supporting two distinc
    ```
 
 ---
-
-<!--
-## Contribution
-
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit changes:
-   ```bash
-   git commit -m "Add your feature description"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open a pull request.
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Contact
-
-For any inquiries or feedback, please reach out:
-
-- Email: [your-email@example.com](mailto:your-email@example.com)
-- GitHub: [your-username](https://github.com/your-username) -->
