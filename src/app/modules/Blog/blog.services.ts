@@ -23,7 +23,10 @@ const updateBlog = async (
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
   }
 
-  if (blog.author.toString() !== author?.userId.toString()) {
+  if (
+    blog.author.toString() !== author?.userId.toString() ||
+    author?.role !== 'user'
+  ) {
     throw new AppError(
       StatusCodes.FORBIDDEN,
       'You are not authorized to update this blog'
