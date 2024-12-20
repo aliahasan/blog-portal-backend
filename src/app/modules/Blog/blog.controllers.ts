@@ -41,7 +41,16 @@ const handleDeleteBlog = tryCatchAsync(async (req, res) => {
   });
 });
 
-const handleGetallBlogs = tryCatchAsync(async (req, res) => {});
+const handleGetallBlogs = tryCatchAsync(async (req, res) => {
+  const result = await blogServices.getAllBlogs(req.query);
+  sendResponse(res, {
+    success: true,
+    message: 'Blogs fetched successfully',
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
+
 export const blogControllers = {
   handleCreateBlog,
   handleGetallBlogs,
