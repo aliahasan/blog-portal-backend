@@ -198,7 +198,7 @@ This project is a backend system for a blogging platform, supporting two distinc
    - Create a `.env` file with the following variables:
      ```env
      PORT=5000
-     MONGO_URI=your_mongodb_connection_string
+     DATABASE_URL=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
      JWT_SECRET_EXPIRES_IN
      ```
