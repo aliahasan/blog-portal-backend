@@ -22,7 +22,10 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(StatusCodes.UNAUTHORIZED, 'you are not authorized');
     }
     if (user?.isBlocked) {
-      throw new AppError(StatusCodes.FORBIDDEN, 'Your account is blocked');
+      throw new AppError(
+        StatusCodes.FORBIDDEN,
+        'Your account is blocked, you can not perform this action'
+      );
     }
 
     if (requiredRoles && !requiredRoles.includes(role)) {
