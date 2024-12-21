@@ -9,6 +9,7 @@ import tryCatchAsync from '../utils/catchAsync';
 const auth = (...requiredRoles: TUserRole[]) => {
   return tryCatchAsync(async (req, res, next) => {
     const token = req.headers?.authorization?.split(' ')[1];
+
     if (!token) {
       throw new AppError(StatusCodes.UNAUTHORIZED, 'you are not authorized');
     }

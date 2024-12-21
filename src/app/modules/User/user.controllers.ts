@@ -18,8 +18,8 @@ const handleRegisterUser = tryCatchAsync(async (req, res) => {
 const handleLogin = tryCatchAsync(async (req, res) => {
   const result = await userServices.loginUser(req.body);
   const { token } = result;
-
-  res.cookie('token', token, {
+  const bearerToken = `Bearer ${token}`;
+  res.cookie('token', bearerToken, {
     secure: config.NODE_ENV === 'production',
     httpOnly: true,
   });

@@ -37,7 +37,7 @@ const loginUser = async (payload: TUser) => {
     expiresIn,
   });
   return {
-    token: `Bearer ${accessToken}`,
+    token: accessToken,
   };
 };
 
