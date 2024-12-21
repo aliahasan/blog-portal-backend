@@ -32,7 +32,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new AppError(
         StatusCodes.FORBIDDEN,
-        'you are not authorized to access this resource'
+        'you are not allowed to access this resource'
       );
     }
     req.user = decoded as JwtPayload;
