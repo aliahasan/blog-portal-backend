@@ -10,8 +10,8 @@ const updateUser = async (
   userId: string,
   admin: JwtPayload
 ) => {
-  const authAmin = await User.findById(admin?.userId);
-  if (!authAmin || authAmin.role !== 'admin' || admin?.role !== 'admin') {
+  const authAdmin = await User.findById(admin?.userId);
+  if (!authAdmin || authAdmin.role !== 'admin' || admin?.role !== 'admin') {
     throw new AppError(
       StatusCodes.UNAUTHORIZED,
       'You are not allowed to access this recourse'
@@ -24,13 +24,12 @@ const updateUser = async (
   if (!blockedUser) {
     throw new AppError(StatusCodes.NOT_FOUND, 'User not found');
   }
-
   return blockedUser;
 };
 
 const deleteBlog = async (id: string, admin: JwtPayload) => {
-  const authAmin = await User.findById(admin?.userId);
-  if (!authAmin || authAmin.role !== 'admin' || admin?.role !== 'admin') {
+  const authAdmin = await User.findById(admin?.userId);
+  if (!authAdmin || authAdmin.role !== 'admin' || admin?.role !== 'admin') {
     throw new AppError(
       StatusCodes.UNAUTHORIZED,
       'You are not allowed to access this recourse'

@@ -22,17 +22,16 @@ const updateBlog = async (
   if (!blog) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
   }
-
   if (
     blog.author.toString() !== author?.userId.toString() ||
     author?.role !== 'user'
   ) {
     throw new AppError(
       StatusCodes.FORBIDDEN,
-      'You are not authorized to update this blog'
+      'You are not allowed to update this blog'
     );
   }
-  //   Update the blog
+  // Update the blog
   const updatedBlog = await Blog.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
@@ -63,7 +62,7 @@ const getAllBlogs = async (query: Record<string, unknown>) => {
   const blogsQuery = new QueryBuilder(
     Blog.find().populate({
       path: 'author',
-      select: '-password -role -isBlocked',
+      select: '-password',
     }),
     query
   )

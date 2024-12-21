@@ -7,7 +7,13 @@ import User from './user.model';
 
 const createUser = async (payload: TUser) => {
   const result = await User.create(payload);
-  return result;
+  const { name, email } = result;
+  const user = {
+    _id: result?._id,
+    name,
+    email,
+  };
+  return user;
 };
 
 const loginUser = async (payload: TUser) => {
@@ -28,7 +34,7 @@ const loginUser = async (payload: TUser) => {
   }
 
   const jwtPayload = {
-    userId: user._id,
+    userId: user?._id,
     role: user?.role,
     email: user?.email,
   };
